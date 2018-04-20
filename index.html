@@ -5,12 +5,61 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109558022-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'UA-109558022-1');
   </script>
 
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+
+  <script>
+    firebase.initializeApp({
+      apiKey: 'AIzaSyA2XUl423aVWdpLVJ0DnWNdvhpP6B0ptd8',
+      authDomain: 'voice-notifies.firebaseapp.com',
+      projectId: 'voice-notifies'
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+
+
+//    db.collection("emailsWindows").get()
+//      .then((querySnapshot) => {
+//      querySnapshot.forEach(function (doc){
+//      console.log(`${doc.id} => ${doc.data().email}`);
+//    });
+//    });
+
+    function downloadClicked() {
+      db.collection('downloadClicked').add({ clicked: true })
+        .then(function (docRef) {
+          console.log('Document written with ID: ', docRef.id);
+        })
+        .catch(function (error) {
+          console.error('Error adding document: ', error);
+        });
+    }
+
+    function collectEmail() {
+      const email = document.getElementById('emailInput').value;
+
+      db.collection('emailWindows').add({ email: email })
+        .then(function (docRef) {
+          console.log('Document written with ID: ', docRef.id);
+        })
+        .catch(function (error) {
+          console.error('Error adding document: ', error);
+        });
+    }
+
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -20,20 +69,23 @@
   <title>Voice Notifies</title>
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
   <!-- Custom styles for this template -->
   <link href="./narrow-jumbotron.css" rel="stylesheet">
   <style>
-    #topImage{
+    #topImage {
       width: 720px;
       height: auto;
     }
 
-    #header{
+    #header {
       margin-bottom: 30px;
     }
 
-    #contact{
+    #contact {
       font-size: 15px;
       margin-bottom: 10px;
       text-align: center;
@@ -61,15 +113,18 @@
 
   <main role="main">
     <div id="topImageContainer">
-    <img src="voice-notifies.png" id="topImage">
+      <img src="voice-notifies.png" id="topImage">
     </div>
     <div class="jumbotron" style="padding-top: 0; background: linear-gradient(white,#f1f1f1);">
 
       <h1 class="display-4">Voice Notifies</h1>
       <p class="lead">Access Google Voice website from the menu bar of your mac.</p>
-      <p><a class="btn btn-lg btn-success" href="#" role="button">Download for mac</a></p>
+      <p><a class="btn btn-lg btn-success" style="color: #ffffff" role="button" onclick="downloadClicked()">Buy it for $4.99</a>
+        <a class="btn btn-lg btn-info" style="color: #ffffff" role="button" onclick="downloadClicked()">Try it for 30 days</a>
+      </p>
     </div>
-
+    <p>Email address for when the windows version is released: <input id="emailInput"> <a
+        class="btn btn-primary btn-sm" style="color: #ffffff" role="button" onclick="collectEmail()">Notify Me</a></p>
     <div class="row marketing">
       <div class="col-lg-6">
         <h4>Easy access</h4>
@@ -77,14 +132,17 @@
 
         <h4>Menu bar voice stats</h4>
         <p>Quickly glance at the menu bar to see new text messages, calls or voicemails</p>
+
+        <h4>Notifications</h4>
+        <p>See Mac notifications as messages, missed calls and voicemails arrive</p>
       </div>
 
       <div class="col-lg-6">
         <h4>No Google chrome</h4>
-        <p>No need to have Goole extension installed or even to have chrome open or installed.</p>
+        <p>No need to have Google voice extension installed or even to have chrome open or installed.</p>
 
         <h4>Shortcut keys</h4>
-        <p>⌘ + u to quickly open voice notifies quickly, or assign your own shortcut.</p>
+        <p>⌘ + u to quickly open voice notifies, or assign your own shortcut.</p>
       </div>
     </div>
 
