@@ -26,6 +26,9 @@
       const email = document.getElementById('emailInput').value;
 
       window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`)
+        .then(() => {
+          document.getElementById('emailCollection').innerHTML = 'Thanks for registering';
+        })
     }
 
   </script>
@@ -92,9 +95,11 @@
         <a class="btn btn-lg btn-info" style="color: #ffffff" role="button" onclick="downloadClicked('trial')">Try it for 30 days</a>
       </p>
     </div>
+    <div id="emailCollection">
     <p>Email address for when the windows version is released: <input id="emailInput"> <a
         class="btn btn-primary btn-sm" style="color: #ffffff" role="button" onclick="collectEmail()">Notify Me</a></p>
-    <div class="row marketing">
+    </div>
+      <div class="row marketing">
       <div class="col-lg-6">
         <h4>Easy access</h4>
         <p>Get to all of Google voice with a single click</p>
