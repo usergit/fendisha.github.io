@@ -27,7 +27,7 @@
 
       window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`)
         .then(() => {
-          document.getElementById('emailCollection').innerHTML = 'Thanks for registering';
+          document.getElementById('emailCollection').innerHTML = 'Thanks';
         })
     }
 
@@ -91,15 +91,21 @@
 
       <h1 class="display-4">Voice Notifies</h1>
       <p class="lead">Access Google Voice website from the menu bar of your mac.</p>
-      <p><a class="btn btn-lg btn-success" style="color: #ffffff" role="button" onclick="downloadClicked('buy')">Buy it for $4.99</a>
-        <a class="btn btn-lg btn-info" style="color: #ffffff" role="button" onclick="downloadClicked('trial')">Try it for 30 days</a>
+      <p><a class="btn btn-lg btn-success" style="color: #ffffff" role="button"
+            onclick="downloadClicked('buy')">Buy it for $4.99</a>
+        <a class="btn btn-lg btn-info" style="color: #ffffff" role="button"
+           onclick="downloadClicked('trial')">Try it for 30 days</a>
       </p>
     </div>
-    <div id="emailCollection">
-    <p>Email address for when the windows version is released: <input id="emailInput"> <a
-        class="btn btn-primary btn-sm" style="color: #ffffff" role="button" onclick="collectEmail()">Notify Me</a></p>
-    </div>
-      <div class="row marketing">
+
+    <p>Email address for when the windows version is released:
+      <input id="emailInput">
+      <span id="emailCollection">
+      <a class="btn btn-primary btn-sm" style="color: #ffffff" role="button"
+         onclick="collectEmail()">Notify Me</a>
+      </span>
+    </p>
+    <div class="row marketing">
       <div class="col-lg-6">
         <h4>Easy access</h4>
         <p>Get to all of Google voice with a single click</p>
@@ -113,7 +119,8 @@
 
       <div class="col-lg-6">
         <h4>No Google chrome</h4>
-        <p>No need to have Google voice extension installed or even to have chrome open or installed.</p>
+        <p>No need to have Google voice extension installed or even to have chrome open or
+          installed.</p>
 
         <h4>Shortcut keys</h4>
         <p>⌘ + u to quickly open voice notifies, or assign your own shortcut.</p>
