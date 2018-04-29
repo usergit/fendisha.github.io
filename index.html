@@ -19,14 +19,19 @@
 
   <script>
     function downloadClicked(trialOrBuy) {
-      window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/downloadClicked?clicked=true&trialOrBuy=${trialOrBuy}`)
+      window.fetch(
+        `https://us-central1-voice-notifies.cloudfunctions.net/downloadClicked?clicked=true&trialOrBuy=${trialOrBuy}`,
+        { mode: 'cors' }
+      )
     }
 
     function collectEmail() {
       const email = document.getElementById('emailInput').value;
       document.getElementById('emailCollection').innerHTML = 'Thanks';
 
-      window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`)
+      window.fetch(
+        `https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`,
+      { mode: 'cors' })
     }
 
   </script>
