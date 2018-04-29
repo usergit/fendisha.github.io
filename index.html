@@ -24,11 +24,9 @@
 
     function collectEmail() {
       const email = document.getElementById('emailInput').value;
+      document.getElementById('emailCollection').innerHTML = 'Thanks';
 
       window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`)
-        .then(() => {
-          document.getElementById('emailCollection').innerHTML = 'Thanks';
-        })
     }
 
   </script>
