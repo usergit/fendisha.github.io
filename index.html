@@ -16,47 +16,16 @@
   </script>
 
   <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
 
   <script>
-    firebase.initializeApp({
-      apiKey: 'AIzaSyA2XUl423aVWdpLVJ0DnWNdvhpP6B0ptd8',
-      authDomain: 'voice-notifies.firebaseapp.com',
-      projectId: 'voice-notifies'
-    });
-
-    // Initialize Cloud Firestore through Firebase
-    var db = firebase.firestore();
-
-
-
-//    db.collection("emailsWindows").get()
-//      .then((querySnapshot) => {
-//      querySnapshot.forEach(function (doc){
-//      console.log(`${doc.id} => ${doc.data().email}`);
-//    });
-//    });
-
     function downloadClicked(trialOrBuy) {
-      db.collection('downloadClicked').add({ clicked: true, trialOrBuy })
-        .then(function (docRef) {
-          console.log('Document written with ID: ', docRef.id);
-        })
-        .catch(function (error) {
-          console.error('Error adding document: ', error);
-        });
+      window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/downloadClicked?clicked=true&trialOrBuy=${trialOrBuy}`)
     }
 
     function collectEmail() {
       const email = document.getElementById('emailInput').value;
 
-      db.collection('emailWindows').add({ email: email })
-        .then(function (docRef) {
-          console.log('Document written with ID: ', docRef.id);
-        })
-        .catch(function (error) {
-          console.error('Error adding document: ', error);
-        });
+      window.fetch(`https://us-central1-voice-notifies.cloudfunctions.net/collectEmail?email=${email}`)
     }
 
   </script>
