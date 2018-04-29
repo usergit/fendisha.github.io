@@ -37,8 +37,8 @@
 //    });
 //    });
 
-    function downloadClicked() {
-      db.collection('downloadClicked').add({ clicked: true })
+    function downloadClicked(trialOrBuy) {
+      db.collection('downloadClicked').add({ clicked: true, trialOrBuy })
         .then(function (docRef) {
           console.log('Document written with ID: ', docRef.id);
         })
@@ -119,8 +119,8 @@
 
       <h1 class="display-4">Voice Notifies</h1>
       <p class="lead">Access Google Voice website from the menu bar of your mac.</p>
-      <p><a class="btn btn-lg btn-success" style="color: #ffffff" role="button" onclick="downloadClicked()">Buy it for $4.99</a>
-        <a class="btn btn-lg btn-info" style="color: #ffffff" role="button" onclick="downloadClicked()">Try it for 30 days</a>
+      <p><a class="btn btn-lg btn-success" style="color: #ffffff" role="button" onclick="downloadClicked('buy')">Buy it for $4.99</a>
+        <a class="btn btn-lg btn-info" style="color: #ffffff" role="button" onclick="downloadClicked('trial')">Try it for 30 days</a>
       </p>
     </div>
     <p>Email address for when the windows version is released: <input id="emailInput"> <a
